@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fairy Invites ✨ — Custom Video Invitations & Wedding Cards</title>
+<meta name="description" content="Fairy Invites — Custom video invitations for weddings, Nikah, Haldi, Engagement, Birthday & every celebration. Based in Indore, India. Order on WhatsApp!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A96E;
+  --rose-gold: #B76E79;
+  --blush: #FFE4E6;
+  --ivory: #FFF8F0;
+  --deep-navy: #0D0D2B;
+  --dark-maroon: #1A0005;
+  --purple-dark: #2D1B69;
+  --lilac: #C8A2C8;
+  --green-wa: #C9A96E; /* using gold tones instead of bright WhatsApp green */
+  --text-light: #f0e8ff;
+  --text-muted: #a89bc2;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--deep-navy);
+  color: var(--text-light);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ═══════════════════════════════════ CURSOR ══════════════════════════════════ */
+#cursor {
+  position: fixed; width: 12px; height: 12px;
+  background: var(--gold); border-radius: 50%;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform .15s ease;
+  mix-blend-mode: screen;
+}
+#cursor-trail { position: fixed; pointer-events: none; z-index: 99998; top:0;left:0; }
+
+/* ═══════════════════════════════════ LOADER ══════════════════════════════════ */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--deep-navy);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 99997;
+  transition: opacity .8s ease, visibility .8s ease;
+}
+#loader.hide { opacity: 0; visibility: hidden; }
+.loader-wand {
+  font-size: 4rem;
+  animation: wandSpin 1.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 20px var(--gold));
+}
+.loader-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-top: 1rem;
+  letter-spacing: 3px;
+  animation: pulse 1.2s ease-in-out infinite alternate;
+}
+.loader-dots span {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin: 0 3px;
+  animation: bounce 0.8s ease-in-out infinite alternate;
+}
+.loader-dots span:nth-child(2){animation-delay:.2s}
+.loader-dots span:nth-child(3){animation-delay:.4s}
+@keyframes wandSpin { from{transform:rotate(-20deg) scale(1)} to{transform:rotate(20deg) scale(1.2)} }
+@keyframes pulse { from{opacity:.6} to{opacity:1} }
+@keyframes bounce { from{transform:translateY(0)} to{transform:translateY(-10px)} }
+
+/* ═══════════════════════════════════ PARTICLES ══════════════════════════════════ */
+#particles { position: fixed; top:0;left:0;width:100%;height:100%; pointer-events:none; z-index:0; }
+
+/* ═══════════════════════════════════ NAVBAR ══════════════════════════════════ */
+nav {
+  position: fixed; top:0; width:100%; z-index: 1000;
+  padding: 1rem 4%;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all .4s ease;
+}
+nav.scrolled {
+  background: rgba(13,13,43,.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,169,110,.2);
+  padding: .7rem 4%;
+}
+.nav-logo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.9rem;
+  color: var(--gold);
+  text-decoration: none;
+  display: flex; align-items: center; gap: .4rem;
+  text-shadow: 0 0 20px rgba(201,169,110,.6);
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--text-light); text-decoration: none;
+  font-size: .85rem; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase; transition: color .3s;
+  position: relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-4px; left:0;
+  width:0; height:1px; background:var(--gold);
+  transition: width .3s ease;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff; border: none;
+  padding: .6rem 1.4rem; border-radius: 50px;
+  font-family: 'Nunito', sans-serif; font-size: .85rem; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  display: flex; align-items: center; gap: .4rem;
+  box-shadow: 0 4px 20px rgba(37,211,102,.3);
+  transition: transform .3s, box-shadow .3s;
+  animation: waPulse 2s ease-in-out infinite;
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,.5); }
+@keyframes waPulse {
+  0%,100%{box-shadow: 0 4px 20px rgba(37,211,102,.3)}
+  50%{box-shadow: 0 4px 30px rgba(37,211,102,.6)}
+}
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.hamburger span { width:25px; height:2px; background:var(--gold); border-radius:2px; transition:.3s; }
+.mobile-menu {
+  display:none; position:fixed; top:70px; left:0; right:0;
+  background:rgba(13,13,43,.97); padding:2rem;
+  flex-direction:column; gap:1.5rem; z-index:999;
+  border-bottom: 1px solid rgba(201,169,110,.2);
+}
+.mobile-menu.open { display:flex; }
+.mobile-menu a { color:var(--text-light); text-decoration:none; font-size:1.1rem; text-align:center; }
+
+/* ═══════════════════════════════════ HERO ══════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; position: relative; overflow: hidden;
+  background: radial-gradient(ellipse at 60% 40%, rgba(183,110,121,.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(45,27,105,.3) 0%, transparent 50%),
+              var(--deep-navy);
+}
+.hero-content { position: relative; z-index: 2; padding: 2rem; max-width: 900px; }
+.hero-badge-row {
+  display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center;
+  margin-bottom: 2rem;
+}
+.hero-badge {
+  background: rgba(201,169,110,.12);
+  border: 1px solid rgba(201,169,110,.3);
+  color: var(--gold);
+  padding: .35rem .9rem; border-radius: 50px;
+  font-size: .78rem; font-weight: 600; letter-spacing: .5px;
+  animation: fadeInUp .6s ease both;
+}
+.hero-badge:nth-child(2){animation-delay:.1s}
+.hero-badge:nth-child(3){animation-delay:.2s}
+.hero-badge:nth-child(4){animation-delay:.3s}
+
+.hero-subtitle-top {
+  font-size: .9rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--rose-gold); margin-bottom: 1rem;
+  animation: fadeInUp .6s .2s ease both;
+  font-weight: 500;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 700; line-height: 1.1;
+  margin-bottom: .5rem;
+  animation: fadeInUp .6s .3s ease both;
+}
+.hero-title span {
+  font-family: 'Dancing Script', cursive;
+  color: var(--gold);
+  display: block; font-size: 1.2em;
+  text-shadow: 0 0 40px rgba(201,169,110,.5);
+}
+.hero-tagline {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: var(--lilac); margin-bottom: 1.5rem;
+  animation: fadeInUp .6s .4s ease both;
+}
+.hero-desc {
+  font-size: 1.05rem; color: var(--text-muted);
+  max-width: 600px; margin: 0 auto 2.5rem;
+  line-height: 1.8;
+  animation: fadeInUp .6s .5s ease both;
+}
+.hero-btns {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  animation: fadeInUp .6s .6s ease both;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+  color: #fff; border: none; padding: .9rem 2.2rem;
+  border-radius: 50px; font-family: 'Nunito'; font-size: 1rem;
+  font-weight: 700; cursor: pointer; text-decoration: none;
+  box-shadow: 0 8px 30px rgba(201,169,110,.4);
+  transition: transform .3s, box-shadow .3s;
+  position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content:''; position:absolute; top:-50%; left:-60%; width:40%; height:200%;
+  background:rgba(255,255,255,.2); transform:skewX(-20deg);
+  animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer { 0%{left:-60%} 100%{left:160%} }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(201,169,110,.6); }
+.btn-secondary {
+  background: transparent;
+  border: 1.5px solid rgba(201,169,110,.5);
+  color: var(--gold); padding: .9rem 2.2rem;
+  border-radius: 50px; font-family: 'Nunito'; font-size: 1rem;
+  font-weight: 600; cursor: pointer; text-decoration: none;
+  transition: all .3s;
+}
+.btn-secondary:hover { background: rgba(201,169,110,.1); border-color: var(--gold); }
+
+.hero-scroll {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  color: var(--text-muted); font-size: .75rem; letter-spacing: 2px;
+  animation: fadeInUp 1s 1s ease both;
+}
+.scroll-arrow {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 1.5s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+/* ═══════════════════════════════════ STATS ══════════════════════════════════ */
+#stats {
+  padding: 4rem 4%;
+  background: linear-gradient(135deg, rgba(201,169,110,.08), rgba(183,110,121,.08));
+  border-top: 1px solid rgba(201,169,110,.15);
+  border-bottom: 1px solid rgba(201,169,110,.15);
+  position: relative; z-index: 1;
+}
+.stats-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 2rem; max-width: 1000px; margin: 0 auto;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: .8rem; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--text-muted);
+  margin-top: .3rem;
+}
+
+/* ═══════════════════════════════════ SECTION BASE ══════════════════════════════════ */
+section { position: relative; z-index: 1; }
+.section-header { text-align: center; margin-bottom: 3.5rem; }
+.section-tag {
+  display: inline-block;
+  font-size: .75rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--rose-gold); margin-bottom: .8rem;
+  font-weight: 600;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700; line-height: 1.2; margin-bottom: .8rem;
+}
+.section-title em {
+  font-style: italic; color: var(--gold);
+}
+.section-sub {
+  color: var(--text-muted); font-size: 1rem; max-width: 550px;
+  margin: 0 auto; line-height: 1.7;
+}
+.divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 1rem auto 0;
+}
+
+/* ═══════════════════════════════════ SERVICES ══════════════════════════════════ */
+#services { padding: 6rem 4%; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+}
+.service-card {
+  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+  border: 1px solid rgba(201,169,110,.2);
+  border-radius: 16px; padding: 2rem 1.6rem;
+  cursor: pointer; transition: all .4s ease;
+  position: relative; overflow: hidden;
+  transform-style: preserve-3d;
+}
+.service-card::before {
+  content:''; position:absolute; inset:0; border-radius:16px;
+  background: linear-gradient(135deg, rgba(201,169,110,.08), transparent);
+  opacity:0; transition: opacity .4s;
+}
+.service-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+.service-card:hover::before { opacity: 1; }
+.service-card:hover .service-icon { transform: scale(1.2) rotate(10deg); }
+.service-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; transition: transform .4s; }
+.service-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 600; margin-bottom: .6rem;
+}
+.service-desc { color: var(--text-muted); font-size: .88rem; line-height: 1.6; }
+.service-wa-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  margin-top: 1.2rem; color: var(--gold);
+  font-size: .82rem; font-weight: 600; text-decoration: none;
+  opacity: 0; transition: opacity .3s;
+}
+.service-card:hover .service-wa-btn { opacity: 1; }
+
+/* ═══════════════════════════════════ PORTFOLIO ══════════════════════════════════ */
+#portfolio {
+  padding: 6rem 4%;
+  background: linear-gradient(180deg, transparent, rgba(45,27,105,.15), transparent);
+}
+.filter-tabs {
+  display: flex; flex-wrap: wrap; gap: .6rem;
+  justify-content: center; margin-bottom: 3rem;
+}
+.filter-btn {
+  padding: .5rem 1.2rem; border-radius: 50px;
+  border: 1px solid rgba(201,169,110,.3);
+  background: transparent; color: var(--text-muted);
+  font-family: 'Nunito'; font-size: .82rem; font-weight: 600;
+  cursor: pointer; transition: all .3s;
+  letter-spacing: .5px;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+  color: #fff; border-color: transparent;
+  box-shadow: 0 4px 15px rgba(201,169,110,.4);
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.2rem; max-width: 1200px; margin: 0 auto;
+}
+.portfolio-card {
+  border-radius: 14px; overflow: hidden;
+  position: relative; cursor: pointer;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(201,169,110,.15);
+  transition: all .4s ease;
+  aspect-ratio: 3/4;
+}
+.portfolio-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+.portfolio-card.hidden { display: none; }
+.card-thumb {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; position: relative;
+  overflow: hidden;
+}
+.card-bg {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: .5rem; padding: 1.5rem;
+  text-align: center;
+}
+.card-emoji { font-size: 3rem; display: block; margin-bottom: .5rem; }
+.card-preview-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem; color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,.5);
+  line-height: 1.3;
+}
+.card-preview-type {
+  font-size: .75rem; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,.6); margin-top: .3rem;
+}
+.card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,13,43,.97) 0%, rgba(13,13,43,.7) 50%, transparent 100%);
+  padding: 1.2rem; display: flex; flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0; transition: opacity .3s ease;
+}
+.portfolio-card:hover .card-overlay { opacity: 1; }
+.overlay-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 600;
+  color: #fff; margin-bottom: .4rem;
+}
+.overlay-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .8rem; }
+.tag {
+  padding: .2rem .6rem; border-radius: 50px;
+  font-size: .7rem; font-weight: 600;
+  background: rgba(201,169,110,.2); color: var(--gold);
+  border: 1px solid rgba(201,169,110,.3);
+}
+.wa-inquiry-btn {
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  background: linear-gradient(135deg, var(--gold), var(--rose-gold)); color: #fff;
+  padding: .6rem 1rem; border-radius: 8px;
+  text-decoration: none; font-size: .82rem; font-weight: 700;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 15px rgba(201,169,110,.3);
+}
+.wa-inquiry-btn:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(37,211,102,.5); }
+
+/* ═══════════════════════════════════ HOW IT WORKS ══════════════════════════════════ */
+#how {
+  padding: 6rem 4%;
+  background: radial-gradient(ellipse at center, rgba(45,27,105,.2) 0%, transparent 70%);
+}
+.steps-container {
+  max-width: 900px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 0;
+}
+.step {
+  display: flex; gap: 2rem; align-items: flex-start;
+  position: relative; padding-bottom: 2.5rem;
+}
+.step:last-child { padding-bottom: 0; }
+.step:last-child .step-line { display: none; }
+.step-left { display: flex; flex-direction: column; align-items: center; }
+.step-num {
+  width: 55px; height: 55px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 700; color: #fff;
+  box-shadow: 0 0 25px rgba(201,169,110,.4);
+  flex-shrink: 0;
+}
+.step-line {
+  width: 1px; flex: 1;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  min-height: 40px; margin: 8px 0;
+}
+.step-content { padding-top: .5rem; }
+.step-icon { font-size: 1.8rem; margin-bottom: .5rem; display: block; }
+.step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 600; margin-bottom: .4rem;
+}
+.step-desc { color: var(--text-muted); font-size: .92rem; line-height: 1.7; }
+
+/* ═══════════════════════════════════ WEDDING WEBSITE ══════════════════════════════════ */
+#wedding-website {
+  padding: 6rem 4%;
+  background: linear-gradient(135deg, rgba(45,27,105,.25), rgba(26,0,5,.3));
+  border-top: 1px solid rgba(201,169,110,.1);
+  border-bottom: 1px solid rgba(201,169,110,.1);
+}
+.ww-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.ww-text .section-header { text-align: left; }
+.ww-text .divider { margin: 1rem 0 0; }
+.feature-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: .8rem; }
+.feature-list li {
+  display: flex; align-items: center; gap: .8rem;
+  font-size: .95rem; color: var(--text-light);
+}
+.feature-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+  display: flex; align-items: center; justify-content: center;
+  font-size: .7rem; flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(201,169,110,.3);
+}
+.ww-mockup {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.mockup-phone {
+  width: 200px; height: 380px; border-radius: 30px;
+  border: 3px solid rgba(201,169,110,.4);
+  background: linear-gradient(180deg, rgba(45,27,105,.8), rgba(13,13,43,.9));
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: .8rem;
+  position: relative; z-index: 2;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 40px rgba(201,169,110,.1);
+}
+.phone-notch {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 8px; border-radius: 4px;
+  background: rgba(201,169,110,.3);
+}
+.phone-content { text-align: center; padding: 2rem 1rem; }
+.phone-title { font-family:'Dancing Script',cursive; font-size:1.4rem; color:var(--gold); }
+.phone-subtitle { font-size:.75rem; color:var(--text-muted); margin:.3rem 0 1rem; }
+.phone-hearts { font-size: 1.8rem; animation: heartbeat 1.5s ease-in-out infinite; }
+@keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+.mockup-glow {
+  position: absolute; width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,.15), transparent 70%);
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+@keyframes glowPulse { from{transform:scale(.9);opacity:.5} to{transform:scale(1.1);opacity:1} }
+
+/* ═══════════════════════════════════ PRICING ══════════════════════════════════ */
+#pricing { padding: 6rem 4%; }
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+}
+.price-card {
+  background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+  border: 1px solid rgba(201,169,110,.2);
+  border-radius: 20px; padding: 2.5rem 2rem;
+  text-align: center; position: relative; overflow: hidden;
+  transition: all .4s ease;
+}
+.price-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+.price-card.popular {
+  border-color: var(--gold);
+  background: linear-gradient(145deg, rgba(201,169,110,.1), rgba(183,110,121,.05));
+  transform: scale(1.03);
+}
+.price-card.popular:hover { transform: scale(1.03) translateY(-8px); }
+.popular-badge {
+  position: absolute; top: 1rem; right: 1rem;
+  background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+  color: #fff; font-size: .7rem; font-weight: 700;
+  padding: .3rem .8rem; border-radius: 50px;
+  letter-spacing: 1px;
+  animation: badgeGlow 2s ease-in-out infinite alternate;
+}
+@keyframes badgeGlow { from{box-shadow:0 0 10px rgba(201,169,110,.3)} to{box-shadow:0 0 20px rgba(201,169,110,.7)} }
+.price-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+.price-plan {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;
+}
+.price-features { list-style: none; text-align: left; margin-bottom: 2rem; }
+.price-features li {
+  padding: .5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  color: var(--text-muted); font-size: .9rem;
+  display: flex; gap: .6rem;
+}
+.price-features li::before { content: '✦'; color: var(--gold); flex-shrink: 0; }
+.price-note {
+  color: var(--text-muted); font-size: .8rem;
+  margin-top: 1.5rem; font-style: italic;
+}
+
+/* ═══════════════════════════════════ TESTIMONIALS ══════════════════════════════════ */
+#testimonials {
+  padding: 6rem 4%;
+  background: linear-gradient(180deg, transparent, rgba(183,110,121,.08), transparent);
+  overflow: hidden;
+}
+.testimonials-wrapper { overflow: hidden; position: relative; }
+.testimonials-track {
+  display: flex; gap: 1.5rem;
+  animation: scrollTestimonials 25s linear infinite;
+  width: max-content;
+}
+.testimonials-track:hover { animation-play-state: paused; }
+.testimonial-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(201,169,110,.2);
+  border-radius: 16px; padding: 2rem;
+  min-width: 300px; max-width: 320px;
+  flex-shrink: 0;
+}
+.stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 3px; }
+.testimonial-text {
+  color: var(--text-light); font-size: .92rem;
+  line-height: 1.7; margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.testimonial-author { color: var(--gold); font-weight: 600; font-size: .88rem; }
+.testimonial-event { color: var(--text-muted); font-size: .78rem; margin-top: .2rem; }
+@keyframes scrollTestimonials { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ═══════════════════════════════════ CONTACT ══════════════════════════════════ */
+#contact {
+  padding: 6rem 4%;
+  background: radial-gradient(ellipse at center bottom, rgba(45,27,105,.3) 0%, transparent 70%);
+}
+.contact-inner {
+  max-width: 800px; margin: 0 auto; text-align: center;
+}
+..contact-wa-big {
+  display: inline-flex; align-items: center; gap: 1rem;
+  background: linear-gradient(135deg, var(--gold), var(--rose-gold));
+  color: #fff; text-decoration: none;
+  padding: 1.2rem 2.8rem; border-radius: 50px;
+  font-size: 1.2rem; font-weight: 700;
+  box-shadow: 0 10px 40px rgba(201,169,110,.4);
+  transition: all .3s; margin: 2.5rem 0;
+  animation: bigWaPulse 2s ease-in-out infinite;
+}
+.contact-wa-big:hover { transform: translateY(-4px); box-shadow: 0 15px 50px rgba(201,169,110,.6); }
+@keyframes bigWaPulse {
+  0%,100%{box-shadow:0 10px 40px rgba(201,169,110,.4)}
+  50%{box-shadow:0 10px 60px rgba(201,169,110,.7)}
+}
+.contact-wa-icon { font-size: 1.6rem; }
+.contact-info {
+  display: flex; flex-wrap: wrap; gap: 2rem;
+  justify-content: center; margin-top: 2rem;
+}
+.contact-item {
+  display: flex; align-items: center; gap: .7rem;
+  color: var(--text-muted); font-size: .95rem;
+}
+.contact-item a { color: var(--gold); text-decoration: none; }
+.contact-item a:hover { text-decoration: underline; }
+
+.inquiry-form {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(201,169,110,.2);
+  border-radius: 20px; padding: 2.5rem;
+  margin-top: 3rem; text-align: left;
+}
+.inquiry-form h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; text-align: center; margin-bottom: 2rem;
+  color: var(--gold);
+}
+.form-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 1rem;
+}
+.form-group { display: flex; flex-direction: column; gap: .4rem; }
+.form-group.full { grid-column: 1/-1; }
+.form-group label { font-size: .82rem; color: var(--text-muted); letter-spacing: .5px; }
+.form-group input, .form-group select, .form-group textarea {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,169,110,.25);
+  color: var(--text-light); border-radius: 10px;
+  padding: .8rem 1rem; font-family: 'Nunito';
+  font-size: .92rem; outline: none; transition: border-color .3s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--gold);
+}
+.form-group select option { background: #1a1a3e; }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-submit {
+  width: 100%; margin-top: 1.2rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff; border: none; padding: 1rem;
+  border-radius: 12px; font-family: 'Nunito';
+  font-size: 1rem; font-weight: 700; cursor: pointer;
+  transition: all .3s;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+}
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,.4); }
+
+/* ═══════════════════════════════════ FOOTER ══════════════════════════════════ */
+footer {
+  padding: 3rem 4% 2rem;
+  background: rgba(0,0,0,.3);
+  border-top: 1px solid rgba(201,169,110,.15);
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem; color: var(--gold);
+  text-shadow: 0 0 20px rgba(201,169,110,.4);
+  margin-bottom: .5rem;
+  display: block;
+}
+.footer-tagline { color: var(--text-muted); font-size: .88rem; margin-bottom: 1.5rem; }
+.footer-links {
+  display: flex; gap: 1.5rem; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 1.5rem;
+}
+.footer-links a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: .85rem; transition: color .3s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-social { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
+.social-btn {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; text-decoration: none;
+  border: 1px solid rgba(201,169,110,.3);
+  transition: all .3s; background: rgba(255,255,255,.03);
+}
+.social-btn:hover { border-color: var(--gold); background: rgba(201,169,110,.1); transform: translateY(-3px); }
+.footer-copy { color: var(--text-muted); font-size: .8rem; }
+
+/* ═══════════════════════════════════ FLOATING WA (hidden) ══════════════════════════════════ */
+#float-wa {
+  display: none !important;
+}
+/* ripple keys retained if needed, but floating element is disabled */
+@keyframes floatWa { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+@keyframes waBounce { 0%,100%{box-shadow:0 8px 30px rgba(201,169,110,.3)} 50%{box-shadow:0 8px 45px rgba(201,169,110,.5)} }
+@keyframes ripple { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(2);opacity:0} }
+
+/* ═══════════════════════════════════ SCROLL TO TOP ══════════════════════════════════ */
+#scroll-top {
+  position: fixed; bottom: 2rem; left: 2rem; z-index: 1000;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(201,169,110,.15);
+  border: 1px solid rgba(201,169,110,.4);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 1rem; cursor: pointer;
+  opacity: 0; visibility: hidden; transition: all .3s;
+}
+#scroll-top.visible { opacity: 1; visibility: visible; }
+#scroll-top:hover { background: rgba(201,169,110,.25); }
+
+/* ═══════════════════════════════════ ANIMATIONS ══════════════════════════════════ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ═══════════════════════════════════ INSTAGRAM SECTION ══════════════════════════════════ */
+#instagram {
+  padding: 5rem 4%;
+  text-align: center;
+}
+.insta-cta {
+  display: inline-flex; align-items: center; gap: .8rem;
+  margin-top: 2rem;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #fff; text-decoration: none;
+  padding: .9rem 2.2rem; border-radius: 50px;
+  font-weight: 700; font-size: .95rem;
+  box-shadow: 0 8px 30px rgba(253,29,29,.3);
+  transition: all .3s;
+}
+.insta-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(253,29,29,.5); }
+
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem; max-width: 900px; margin: 2rem auto 0;
+}
+.insta-placeholder {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(131,58,180,.3), rgba(253,29,29,.2), rgba(252,176,69,.2));
+  border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: .5rem;
+  font-size: 2rem; color: rgba(255,255,255,.3);
+  transition: all .3s;
+  cursor: pointer;
+  overflow: hidden; position: relative;
+}
+.insta-placeholder:hover {
+  border-color: rgba(253,29,29,.4);
+  transform: scale(1.05);
+}
+.insta-overlay-text {
+  font-size: .65rem; text-transform: uppercase;
+  letter-spacing: 1px; color: rgba(255,255,255,.4);
+}
+
+/* ═══════════════════════════════════ RESPONSIVE ══════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .ww-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .ww-text .section-header { text-align: center; }
+  .ww-text .divider { margin: 1rem auto 0; }
+  .mockup-phone { width: 160px; height: 300px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .price-card.popular { transform: none; }
+  nav { padding: 1rem 5%; }
+  .stats-grid { gap: 1.2rem; }
+  .stat-num { font-size: 2.2rem; }
+}
+@media (max-width: 480px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+  .portfolio-card { aspect-ratio: 3/4; }
+  .services-grid { grid-template-columns: 1fr; }
+  .hero-btns { flex-direction: column; align-items: center; }
+}
+
+/* Portfolio card gradient themes */
+.theme-gold { background: linear-gradient(145deg, rgba(201,169,110,.2), rgba(26,0,5,.8)); }
+.theme-maroon { background: linear-gradient(145deg, rgba(120,0,30,.6), rgba(13,13,43,.9)); }
+.theme-green { background: linear-gradient(145deg, rgba(0,80,40,.5), rgba(13,13,43,.9)); }
+.theme-purple { background: linear-gradient(145deg, rgba(45,27,105,.6), rgba(13,13,43,.9)); }
+.theme-blue { background: linear-gradient(145deg, rgba(0,50,120,.5), rgba(13,13,43,.9)); }
+.theme-pink { background: linear-gradient(145deg, rgba(183,110,121,.4), rgba(13,13,43,.9)); }
+.theme-teal { background: linear-gradient(145deg, rgba(0,100,100,.5), rgba(13,13,43,.9)); }
+.theme-dark { background: linear-gradient(145deg, rgba(20,20,20,.8), rgba(40,20,40,.6)); }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<canvas id="cursor-trail"></canvas>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-wand">🪄</div>
+  <div class="loader-text">Fairy Invites</div>
+  <div class="loader-dots" style="margin-top:.8rem">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- PARTICLES CANVAS -->
+<canvas id="particles"></canvas>
+
+<!-- FLOATING WhatsApp -->
+<a id="float-wa" href="https://wa.me/918120079939?text=Hi%20Fairy%20Invites!%20I%20visited%20your%20website%20and%20would%20like%20to%20order%20a%20custom%20invitation%20%F0%9F%98%8A" target="_blank" title="Chat on WhatsApp">
+  <span class="wa-ripple"></span>
+  <span class="wa-ripple"></span>
+  💬
+</a>
+
+<!-- SCROLL TO TOP -->
+<div id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">🧚 Fairy Invites</a>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Our Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/918120079939?text=Hi!%20I%20want%20to%20order%20a%20custom%20invitation%20from%20Fairy%20Invites%20%F0%9F%8C%B8" target="_blank">
+    💬 Order on WhatsApp
+  </a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#portfolio" onclick="toggleMenu()">Our Work</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#how" onclick="toggleMenu()">How It Works</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="https://wa.me/918120079939" target="_blank" style="color:var(--gold);font-weight:700">💬 Order on WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge-row">
+      <span class="hero-badge">✨ 205+ Designs Created</span>
+      <span class="hero-badge">❤️ 516+ Happy Families</span>
+      <span class="hero-badge">🕌🛕 Hindu & Muslim Weddings</span>
+      <span class="hero-badge">📲 WhatsApp Delivery</span>
+    </div>
+    <p class="hero-subtitle-top">Welcome to</p>
+    <h1 class="hero-title">
+      <span>Fairy Invites</span>
+      Magical Invitations for<br>Every Celebration
+    </h1>
+    <p class="hero-tagline">"Where Every Celebration Becomes a Story ✨"</p>
+    <p class="hero-desc">Custom video invitations & templates for Weddings, Nikah, Haldi, Mehndi, Engagement, Birthday & every special occasion — crafted with love, delivered on WhatsApp.</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-primary">🎬 See Our Work</a>
+      <a href="https://wa.me/918120079939?text=Hi%20Fairy%20Invites!%20I%20want%20to%20order%20a%20custom%20invitation%20%F0%9F%8C%B8" target="_blank" class="btn-secondary">💬 Order on WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-arrow"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="205">0</div>
+      <div class="stat-label">Invitations Created</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="516">0</div>
+      <div class="stat-label">Happy Families</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="15">0</div>
+      <div class="stat-label">Design Styles</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="100">0</div>
+      <div class="stat-label" style="white-space:nowrap">% Satisfaction</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Communities Served</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <span class="section-tag">What We Create</span>
+    <h2 class="section-title">Every Occasion,<br><em>Perfectly Invited</em></h2>
+    <p class="section-sub">From grand weddings to intimate celebrations — we craft invitations that your guests will never forget.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal" data-tilt>
+      <span class="service-icon">💍</span>
+      <div class="service-name">Hindu Wedding Invitations</div>
+      <div class="service-desc">Traditional & modern styles — peacock themes, temple arches, Rajasthani heritage, floral & illustrated couples.</div>
+      <a class="service-wa-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20Hindu%20Wedding%20Invitation.%20Can%20you%20help?" target="_blank">💬 Inquire Now →</a>
+    </div>
+    <div class="service-card reveal" data-tilt>
+      <span class="service-icon">🕌</span>
+      <div class="service-name">Nikah / Muslim Wedding</div>
+      <div class="service-desc">Beautiful Islamic calligraphy, Bismillah-style designs, illustrated Muslim couples, gold & elegant themes.</div>
+      <a class="service-wa-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20Nikah%20%2F%20Muslim%20Wedding%20Invitation." target="_blank">💬 Inquire Now →</a>
+    </div>
+    <div class="service-card reveal" data-tilt>
+      <span class="service-icon">💛</span>
+      <div class="service-name">Haldi & Mehndi Ceremony</div>
+      <div class="service-desc">Bright yellow marigold haldi themes, festive green mehndi designs — colorful & joyful invitations.</div>
+      <a class="service-wa-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20Haldi%20or%20Mehndi%20ceremony%20invitation." target="_blank">💬 Inquire Now →</a>
+    </div>
+    <div class="service-card reveal" data-tilt>
+      <span class="service-icon">💒</span>
+      <div class="service-name">Engagement Ceremony</div>
+      <div class="service-desc">Ring ceremony, roka, tilak — elegant illustrated couples, golden themes and romantic announcement styles.</div>
+      <a class="service-wa-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20an%20Engagement%20Ceremony%20invitation." target="_blank">💬 Inquire Now →</a>
+    </div>
+    <div class="service-card reveal" data-tilt>
+      <span class="service-icon">🎂</span>
+      <div class="service-name">Birthday Invitations</div>
+      <div class="service-desc">Kids & adult birthday parties — fun, colorful, animated and personalized just for your special day.</div>
+      <a class="service-wa-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20Birthday%20Party%20invitation." target="_blank">💬 Inquire Now →</a>
+    </div>
+    <div class="service-card reveal" data-tilt>
+      <span class="service-icon">🌐</span>
+      <div class="service-name">Personalized Wedding Website</div>
+      <div class="service-desc">Your own couple webpage — love story, RSVP, countdown timer, venue map & WhatsApp-shareable link!</div>
+      <a class="service-wa-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20a%20Personalized%20Wedding%20Website." target="_blank">💬 Inquire Now →</a>
+    </div>
+    <div class="service-card reveal" data-tilt>
+      <span class="service-icon">📅</span>
+      <div class="service-name">Save the Date & Announcements</div>
+      <div class="service-desc">"Wedding Month Coming Soon", "Our Date is Fixed", monogram Save the Date cards — build anticipation!</div>
+      <a class="service-wa-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20Save%20the%20Date%20announcement." target="_blank">💬 Inquire Now →</a>
+    </div>
+    <div class="service-card reveal" data-tilt>
+      <span class="service-icon">🏠</span>
+      <div class="service-name">Other Occasions</div>
+      <div class="service-desc">Housewarming, anniversary, baby shower, naming ceremony, graduation & festival invitations — we do it all!</div>
+      <a class="service-wa-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20custom%20invitation%20for%20a%20special%20occasion." target="_blank">💬 Inquire Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header reveal">
+    <span class="section-tag">Real Work, Real Love</span>
+    <h2 class="section-title">Our <em>Magical Creations</em></h2>
+    <p class="section-sub">Browse our real designs — click any card to instantly inquire about that style on WhatsApp! 💬</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="filter-tabs reveal">
+    <button class="filter-btn active" data-filter="all">All Designs</button>
+    <button class="filter-btn" data-filter="wedding">Wedding</button>
+    <button class="filter-btn" data-filter="nikah">Nikah / Muslim</button>
+    <button class="filter-btn" data-filter="haldi">Haldi / Mehndi</button>
+    <button class="filter-btn" data-filter="engagement">Engagement</button>
+    <button class="filter-btn" data-filter="savedate">Save the Date</button>
+    <button class="filter-btn" data-filter="announcement">Announcement</button>
+    <button class="filter-btn" data-filter="other">Other</button>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid">
+
+    <!-- CARD 1 -->
+    <div class="portfolio-card reveal" data-cat="wedding">
+      <div class="card-thumb"><div class="card-bg theme-pink">
+        <span class="card-emoji">👩‍❤️‍👨</span>
+        <div class="card-preview-title">Vansh & Diya</div>
+        <div class="card-preview-type">Wedding Invitation</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Vansh & Diya Wedding</div>
+        <div class="overlay-tags"><span class="tag">Hindu Wedding</span><span class="tag">Illustrated</span><span class="tag">Floral</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20saw%20the%20Vansh%20%26%20Diya%20illustrated%20wedding%20style%20on%20your%20website%20and%20I%27m%20interested.%20Can%20you%20make%20something%20similar?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-dark">
+        <span class="card-emoji">🤍</span>
+        <div class="card-preview-title">Ali & Dua</div>
+        <div class="card-preview-type">Muslim Wedding</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Ali & Dua Wedding</div>
+        <div class="overlay-tags"><span class="tag">Muslim Wedding</span><span class="tag">Minimal</span><span class="tag">Elegant</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Ali%20%26%20Dua%20minimal%20black%20%26%20white%20wedding%20invitation%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="portfolio-card reveal" data-cat="wedding">
+      <div class="card-thumb"><div class="card-bg theme-maroon">
+        <span class="card-emoji">💑</span>
+        <div class="card-preview-title">We Are Getting Married</div>
+        <div class="card-preview-type">Dark Romantic</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">We Are Getting Married</div>
+        <div class="overlay-tags"><span class="tag">Wedding</span><span class="tag">Dark Romantic</span><span class="tag">Animated</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20liked%20the%20'We%20Are%20Getting%20Married'%20dark%20romantic%20invitation%20style.%20Can%20you%20make%20one%20for%20me?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="portfolio-card reveal" data-cat="wedding">
+      <div class="card-thumb"><div class="card-bg theme-gold">
+        <span class="card-emoji">🎊</span>
+        <div class="card-preview-title">Shadi Wala Ghar</div>
+        <div class="card-preview-type">Colorful Festive</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Shadi Wala Ghar</div>
+        <div class="overlay-tags"><span class="tag">Hindu Wedding</span><span class="tag">Festive</span><span class="tag">Colorful</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20liked%20the%20Shadi%20Wala%20Ghar%20colorful%20festive%20style.%20Can%20I%20order%20one?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-dark" style="background:linear-gradient(145deg,rgba(80,50,0,.8),rgba(13,13,43,.9))">
+        <span class="card-emoji">✨</span>
+        <div class="card-preview-title">Saud Weds Afiya</div>
+        <div class="card-preview-type">Golden Sparkle Luxury</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Saud Weds Afiya</div>
+        <div class="overlay-tags"><span class="tag">Muslim Wedding</span><span class="tag">Golden Glitter</span><span class="tag">Luxury</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20loved%20the%20Saud%20%26%20Afiya%20golden%20sparkle%20luxury%20wedding%20invitation.%20Can%20I%20order%20a%20similar%20one?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="portfolio-card reveal" data-cat="wedding">
+      <div class="card-thumb"><div class="card-bg theme-green">
+        <span class="card-emoji">🌿</span>
+        <div class="card-preview-title">Shubham & Kritika</div>
+        <div class="card-preview-type">Hindu Formal</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Shubham & Kritika Wedding</div>
+        <div class="overlay-tags"><span class="tag">Hindu Wedding</span><span class="tag">Formal</span><span class="tag">Botanical</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Shubham%20%26%20Kritika%20formal%20Hindu%20wedding%20invitation%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 7 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-pink" style="background:linear-gradient(145deg,rgba(200,150,160,.3),rgba(13,13,43,.9))">
+        <span class="card-emoji">📜</span>
+        <div class="card-preview-title">Alshifa & Arvil Nikah</div>
+        <div class="card-preview-type">Full Nikah Card</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Alshifa Khan & Arvil Khan</div>
+        <div class="overlay-tags"><span class="tag">Nikah</span><span class="tag">Islamic</span><span class="tag">Full Details</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20Nikah%20invitation%20card%20similar%20to%20the%20Alshifa%20%26%20Arvil%20style%20with%20full%20event%20details." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 8 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-gold" style="background:linear-gradient(145deg,rgba(150,120,50,.3),rgba(13,13,43,.9))">
+        <span class="card-emoji">🤲</span>
+        <div class="card-preview-title">Moin Weds Muskan</div>
+        <div class="card-preview-type">Nikah Illustrated</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Moin Weds Muskan</div>
+        <div class="overlay-tags"><span class="tag">Nikah</span><span class="tag">Bismillah</span><span class="tag">Illustrated</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20liked%20the%20Moin%20%26%20Muskan%20Nikah%20invitation%20with%20full%20ceremony%20details.%20Can%20I%20order%20something%20similar?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 9 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-maroon" style="background:linear-gradient(145deg,rgba(100,0,30,.6),rgba(200,180,140,.1))">
+        <span class="card-emoji">☪️</span>
+        <div class="card-preview-title">Zainab ❤️ Jawwad</div>
+        <div class="card-preview-type">Islamic Calligraphy</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Zainab & Jawwad Nikah</div>
+        <div class="overlay-tags"><span class="tag">Nikah</span><span class="tag">Calligraphy</span><span class="tag">Red & Cream</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Zainab%20%26%20Jawwad%20Islamic%20calligraphy%20%2B%20couple%20style%20invitation." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 10 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-blue">
+        <span class="card-emoji">👫</span>
+        <div class="card-preview-title">Saba & Bilal</div>
+        <div class="card-preview-type">Modern Muslim Style</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Saba & Bilal Wedding</div>
+        <div class="overlay-tags"><span class="tag">Nikah</span><span class="tag">Modern</span><span class="tag">Navy Couple</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20loved%20the%20Saba%20%26%20Bilal%20modern%20Muslim%20couple%20illustrated%20style.%20Can%20I%20get%20something%20similar?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 11 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-gold">
+        <span class="card-emoji">🌸</span>
+        <div class="card-preview-title">Nushrat Weds Altaf</div>
+        <div class="card-preview-type">Circular Floral</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Nushrat Weds Altaf</div>
+        <div class="overlay-tags"><span class="tag">Muslim Wedding</span><span class="tag">Floral Frame</span><span class="tag">Warm Tones</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Nushrat%20%26%20Altaf%20circular%20floral%20frame%20wedding%20invitation%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 12 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-blue" style="background:linear-gradient(145deg,rgba(20,40,100,.7),rgba(13,13,43,.9))">
+        <span class="card-emoji">💫</span>
+        <div class="card-preview-title">Hania & Kalam</div>
+        <div class="card-preview-type">Navy Blue Monogram</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Hania & Kalam Wedding</div>
+        <div class="overlay-tags"><span class="tag">Muslim Wedding</span><span class="tag">Navy Blue</span><span class="tag">Monogram</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20loved%20the%20Hania%20%26%20Kalam%20navy%20blue%20monogram%20wedding%20invitation%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 13 -->
+    <div class="portfolio-card reveal" data-cat="wedding">
+      <div class="card-thumb"><div class="card-bg theme-teal">
+        <span class="card-emoji">🦚</span>
+        <div class="card-preview-title">Suman & Raghav</div>
+        <div class="card-preview-type">Peacock Theme Hindu</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Suman & Raghav Wedding</div>
+        <div class="overlay-tags"><span class="tag">Hindu Wedding</span><span class="tag">Peacock Theme</span><span class="tag">Traditional</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Suman%20%26%20Raghav%20peacock%20theme%20Hindu%20wedding%20invitation." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 14 -->
+    <div class="portfolio-card reveal" data-cat="wedding">
+      <div class="card-thumb"><div class="card-bg" style="background:linear-gradient(145deg,rgba(150,60,0,.6),rgba(200,100,0,.2))">
+        <span class="card-emoji">🐪</span>
+        <div class="card-preview-title">Pathan Family Welcomes You</div>
+        <div class="card-preview-type">Rajasthani Grand Style</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Pathan Family Welcome</div>
+        <div class="overlay-tags"><span class="tag">Hindu Wedding</span><span class="tag">Rajasthani</span><span class="tag">Heritage</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20loved%20the%20Rajasthani-themed%20Pathan%20Family%20welcome%20invitation.%20Can%20I%20order%20something%20similar?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 15 -->
+    <div class="portfolio-card reveal" data-cat="savedate">
+      <div class="card-thumb"><div class="card-bg theme-purple">
+        <span class="card-emoji">📅</span>
+        <div class="card-preview-title">Kapil & Riya</div>
+        <div class="card-preview-type">Save the Date</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Kapil & Riya — Save the Date</div>
+        <div class="overlay-tags"><span class="tag">Save the Date</span><span class="tag">Purple Theme</span><span class="tag">Modern</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20Save%20the%20Date%20invitation%20similar%20to%20the%20Kapil%20%26%20Riya%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 16 -->
+    <div class="portfolio-card reveal" data-cat="savedate">
+      <div class="card-thumb"><div class="card-bg theme-pink">
+        <span class="card-emoji">🌺</span>
+        <div class="card-preview-title">SF Monogram</div>
+        <div class="card-preview-type">Save the Date — Floral</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">SF Monogram Save the Date</div>
+        <div class="overlay-tags"><span class="tag">Save the Date</span><span class="tag">Monogram</span><span class="tag">Cherry Blossom</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20loved%20the%20SF%20monogram%20Save%20the%20Date%20design%20with%20floral%20frame.%20Can%20I%20order%20this%20style?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 17 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg" style="background:linear-gradient(145deg,rgba(60,30,0,.9),rgba(13,13,43,.8))">
+        <span class="card-emoji">✨</span>
+        <div class="card-preview-title">Farhin & Arham</div>
+        <div class="card-preview-type">Golden Glitter Luxury</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Farhin & Arham</div>
+        <div class="overlay-tags"><span class="tag">Muslim Wedding</span><span class="tag">Golden Glitter</span><span class="tag">Luxury Dark</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Farhin%20%26%20Arham%20golden%20glitter%20luxury%20style%20invitation." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 18 - Engagement -->
+    <div class="portfolio-card reveal" data-cat="engagement">
+      <div class="card-thumb"><div class="card-bg theme-dark">
+        <span class="card-emoji">💍</span>
+        <div class="card-preview-title">Engagement Ceremony</div>
+        <div class="card-preview-type">Black & Gold Stage</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Engagement Ceremony</div>
+        <div class="overlay-tags"><span class="tag">Engagement</span><span class="tag">Black & Gold</span><span class="tag">Illustrated</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20loved%20the%20black%20%26%20gold%20engagement%20ceremony%20invitation.%20Can%20I%20order%20a%20similar%20one?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 19 - Engagement -->
+    <div class="portfolio-card reveal" data-cat="engagement">
+      <div class="card-thumb"><div class="card-bg theme-maroon">
+        <span class="card-emoji">👰</span>
+        <div class="card-preview-title">Bride To Be</div>
+        <div class="card-preview-type">Bridal Announcement</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Bride To Be</div>
+        <div class="overlay-tags"><span class="tag">Engagement</span><span class="tag">Bride Solo</span><span class="tag">Red & Gold</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Bride%20To%20Be%20engagement%20announcement%20invitation%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 20 - Haldi -->
+    <div class="portfolio-card reveal" data-cat="haldi">
+      <div class="card-thumb"><div class="card-bg" style="background:linear-gradient(145deg,rgba(180,130,0,.4),rgba(13,13,43,.8))">
+        <span class="card-emoji">💛</span>
+        <div class="card-preview-title">Nazmeen & Aman Ki Haldi</div>
+        <div class="card-preview-type">Haldi Ceremony</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Nazmeen & Aman Ki Haldi</div>
+        <div class="overlay-tags"><span class="tag">Haldi</span><span class="tag">Marigold</span><span class="tag">Festive</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20Haldi%20ceremony%20invitation%20similar%20to%20the%20Nazmeen%20%26%20Aman%20Ki%20Haldi%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 21 - Mehndi -->
+    <div class="portfolio-card reveal" data-cat="haldi">
+      <div class="card-thumb"><div class="card-bg theme-green">
+        <span class="card-emoji">🌿</span>
+        <div class="card-preview-title">Mehndi Ceremony</div>
+        <div class="card-preview-type">Multi-Event Card</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Mehandi Ceremony — 25th Dec</div>
+        <div class="overlay-tags"><span class="tag">Mehndi</span><span class="tag">Green Theme</span><span class="tag">Multi-Event</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20loved%20the%20Mehndi%20ceremony%20green%20invitation%20with%20multi-event%20dates.%20Can%20I%20order%20this?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 22 - Announcement -->
+    <div class="portfolio-card reveal" data-cat="announcement">
+      <div class="card-thumb"><div class="card-bg theme-purple">
+        <span class="card-emoji">📣</span>
+        <div class="card-preview-title">Wedding Month Coming Soon</div>
+        <div class="card-preview-type">Purple Glow</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Our Wedding Month Coming Soon</div>
+        <div class="overlay-tags"><span class="tag">Announcement</span><span class="tag">Purple Glow</span><span class="tag">Countdown</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20'wedding%20coming%20soon'%20announcement%20invitation%20similar%20to%20the%20purple%20glow%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 23 - Announcement -->
+    <div class="portfolio-card reveal" data-cat="announcement">
+      <div class="card-thumb"><div class="card-bg theme-pink">
+        <span class="card-emoji">🌸</span>
+        <div class="card-preview-title">Insha'Allah April 2025</div>
+        <div class="card-preview-type">Wedding Countdown</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Insha'Allah April 2025</div>
+        <div class="overlay-tags"><span class="tag">Muslim</span><span class="tag">Announcement</span><span class="tag">Floral Pink</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20liked%20the%20Insha'Allah%20April%202025%20wedding%20announcement%20style.%20Can%20you%20make%20something%20similar?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 24 - Announcement -->
+    <div class="portfolio-card reveal" data-cat="announcement">
+      <div class="card-thumb"><div class="card-bg" style="background:linear-gradient(145deg,rgba(200,80,30,.3),rgba(13,13,43,.9))">
+        <span class="card-emoji">💫</span>
+        <div class="card-preview-title">Bs Kuch Din Or</div>
+        <div class="card-preview-type">Countdown Announcement</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Bs Kuch Din Or (Just Few Days!)</div>
+        <div class="overlay-tags"><span class="tag">Countdown</span><span class="tag">Warm Orange</span><span class="tag">Fun</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20a%20'countdown%20to%20wedding'%20announcement%20invitation%20like%20Bs%20Kuch%20Din%20Or." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 25 - Other -->
+    <div class="portfolio-card reveal" data-cat="other">
+      <div class="card-thumb"><div class="card-bg theme-purple" style="background:linear-gradient(145deg,rgba(80,0,120,.5),rgba(13,13,43,.9))">
+        <span class="card-emoji">🏠</span>
+        <div class="card-preview-title">Bashetty's House Warming</div>
+        <div class="card-preview-type">House Warming</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Bashetty's House Warming</div>
+        <div class="overlay-tags"><span class="tag">Housewarming</span><span class="tag">Purple Mandala</span><span class="tag">Royal</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20house%20warming%20invitation%20similar%20to%20the%20Bashetty's%20purple%20mandala%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 26 - Friend's Wedding -->
+    <div class="portfolio-card reveal" data-cat="other">
+      <div class="card-thumb"><div class="card-bg" style="background:linear-gradient(145deg,rgba(200,120,0,.3),rgba(255,180,100,.1))">
+        <span class="card-emoji">👯‍♀️</span>
+        <div class="card-preview-title">Pyari Saheli Ki #Shadi</div>
+        <div class="card-preview-type">Best Friends Wedding</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Pyari Saheli Ki #Shadi</div>
+        <div class="overlay-tags"><span class="tag">Friend's Wedding</span><span class="tag">Fun</span><span class="tag">Illustrated Besties</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20loved%20the%20Pyari%20Saheli%20Ki%20Shadi%20best%20friend%20style.%20Can%20I%20order%20one%20for%20my%20bestie's%20wedding?" target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 27 - Bhai Ki Shadi -->
+    <div class="portfolio-card reveal" data-cat="other">
+      <div class="card-thumb"><div class="card-bg theme-maroon">
+        <span class="card-emoji">🤵</span>
+        <div class="card-preview-title">Bhai Ki Shadi</div>
+        <div class="card-preview-type">Brother's Wedding</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Bhai Ki Shadi</div>
+        <div class="overlay-tags"><span class="tag">Brother's Wedding</span><span class="tag">Bold</span><span class="tag">Red & White</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20need%20a%20'Bhai%20Ki%20Shadi'%20style%20invitation%20for%20my%20brother's%20wedding." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+    <!-- CARD 28 -->
+    <div class="portfolio-card reveal" data-cat="nikah">
+      <div class="card-thumb"><div class="card-bg theme-gold" style="background:linear-gradient(145deg,rgba(100,70,0,.5),rgba(180,140,60,.1))">
+        <span class="card-emoji">🕌</span>
+        <div class="card-preview-title">Arbaz & Arshi</div>
+        <div class="card-preview-type">Golden Lace Ornamental</div>
+      </div></div>
+      <div class="card-overlay">
+        <div class="overlay-title">Arbaz & Arshi Wedding</div>
+        <div class="overlay-tags"><span class="tag">Muslim Wedding</span><span class="tag">Golden Lace</span><span class="tag">Ornamental</span></div>
+        <a class="wa-inquiry-btn" href="https://wa.me/918120079939?text=Hi!%20I%20liked%20the%20Arbaz%20%26%20Arshi%20golden%20lace%20ornamental%20wedding%20invitation%20style." target="_blank">💬 Inquire About This Style</a>
+      </div>
+    </div>
+
+  </div><!-- end portfolio-grid -->
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-header reveal">
+    <span class="section-tag">Simple & Easy</span>
+    <h2 class="section-title">How It <em>Works</em></h2>
+    <p class="section-sub">Get your dream invitation in just 5 simple steps — delivered straight to WhatsApp!</p>
+    <div class="divider"></div>
+  </div>
+  <div class="steps-container">
+    <div class="step reveal">
+      <div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <span class="step-icon">📋</span>
+        <div class="step-title">Share Your Details</div>
+        <div class="step-desc">Send us your names, event date, venue & any special requirements on WhatsApp. Tell us the style you love — we're here to listen! 💬</div>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <span class="step-icon">🎨</span>
+        <div class="step-title">We Design Your Invitation</div>
+        <div class="step-desc">Our designer crafts your personalized invitation with care — within 24 hours you'll receive a preview of your beautiful design.</div>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <span class="step-icon">🔄</span>
+        <div class="step-title">Review & Request Changes</div>
+        <div class="step-desc">Not 100% happy? No worries! Request changes — we include free revisions until your invitation is exactly how you imagined it.</div>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-left"><div class="step-num">4</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <span class="step-icon">✅</span>
+        <div class="step-title">Approve Your Final Design</div>
+        <div class="step-desc">Give us the green light once you love every detail — the colors, the fonts, the names, everything perfect!</div>
+      </div>
+    </div>
+    <div class="step reveal">
+      <div class="step-left"><div class="step-num">5</div></div>
+      <div class="step-content">
+        <span class="step-icon">📲</span>
+        <div class="step-title">Receive & Share the Magic!</div>
+        <div class="step-desc">Your invitation is delivered via WhatsApp — ready to share with your loved ones instantly. Your guests will be amazed! 🎉</div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:3rem" class="reveal">
+    <a href="https://wa.me/918120079939?text=Hi%20Fairy%20Invites!%20I%27d%20like%20to%20start%20my%20order.%20Can%20you%20help%20me?" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:.5rem;font-size:1rem">
+      💬 Start Your Order on WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- WEDDING WEBSITE SECTION -->
+<section id="wedding-website">
+  <div class="ww-inner">
+    <div class="ww-text">
+      <div class="section-header reveal-left">
+        <span class="section-tag">New Premium Service</span>
+        <h2 class="section-title">Your Own<br><em>Wedding Website!</em> 🌐</h2>
+        <p class="section-sub">Now get a personalized wedding webpage for your couple — shareable via WhatsApp in one link!</p>
+        <div class="divider"></div>
+      </div>
+      <ul class="feature-list reveal-left">
+        <li><div class="feature-check">✓</div>Custom couple URL & webpage</li>
+        <li><div class="feature-check">✓</div>Animated love story timeline</li>
+        <li><div class="feature-check">✓</div>RSVP form for your guests</li>
+        <li><div class="feature-check">✓</div>Event schedule with venue map</li>
+        <li><div class="feature-check">✓</div>Couple photo gallery</li>
+        <li><div class="feature-check">✓</div>Countdown timer to the big day</li>
+        <li><div class="feature-check">✓</div>One-tap WhatsApp shareable link</li>
+        <li><div class="feature-check">✓</div>Hindi, English or Bilingual</li>
+      </ul>
+      <div style="margin-top:2rem" class="reveal-left">
+        <a href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20a%20Personalized%20Wedding%20Website%20from%20Fairy%20Invites.%20Can%20you%20share%20more%20details?" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:.5rem">
+          💬 Inquire About Wedding Website
+        </a>
+      </div>
+    </div>
+    <div class="ww-mockup reveal-right">
+      <div class="mockup-glow"></div>
+      <div class="mockup-phone">
+        <div class="phone-notch"></div>
+        <div class="phone-content">
+          <div class="phone-hearts">💍</div>
+          <div class="phone-title">Rahul & Priya</div>
+          <div class="phone-subtitle">Getting Married — 14 Feb 2026</div>
+          <div style="width:80%;height:1px;background:rgba(201,169,110,.3);margin:.5rem auto"></div>
+          <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:.6rem">📍 Grand Ballroom, Indore</div>
+          <div style="font-size:.7rem;color:var(--text-muted)">⏰ 127 days to go</div>
+          <div style="margin-top:1rem;width:100%;background:var(--gold);color:#fff;padding:.4rem;border-radius:6px;font-size:.7rem;font-weight:700">RSVP Now 💌</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-header reveal">
+    <span class="section-tag">Simple Pricing</span>
+    <h2 class="section-title">Choose Your <em>Package</em></h2>
+    <p class="section-sub">Every quote is personalized — exact pricing shared on WhatsApp based on your requirements.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <span class="price-icon">⭐</span>
+      <div class="price-plan">Basic</div>
+      <ul class="price-features">
+        <li>1 Custom Video Invitation</li>
+        <li>1 Design Concept</li>
+        <li>WhatsApp Delivery</li>
+        <li>2 Free Revisions</li>
+        <li>Delivery within 24 hrs</li>
+      </ul>
+      <a href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Basic%20Plan%20for%20a%20custom%20invitation.%20Can%20you%20share%20pricing?" target="_blank" class="btn-secondary" style="display:block;text-align:center">Get Quote on WhatsApp</a>
+    </div>
+    <div class="price-card popular reveal">
+      <div class="popular-badge">⭐ Most Popular</div>
+      <span class="price-icon">💎</span>
+      <div class="price-plan">Standard</div>
+      <ul class="price-features">
+        <li>1 Premium Video Invitation</li>
+        <li>2 Design Concepts to Choose</li>
+        <li>WhatsApp + Link Delivery</li>
+        <li>3 Free Revisions</li>
+        <li>Background Music of Choice</li>
+        <li>Priority 12-hr Delivery</li>
+      </ul>
+      <a href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Standard%20Plan.%20Can%20you%20share%20pricing?" target="_blank" class="btn-primary" style="display:block;text-align:center">Get Quote on WhatsApp</a>
+    </div>
+    <div class="price-card reveal">
+      <span class="price-icon">👑</span>
+      <div class="price-plan">Premium Wedding</div>
+      <ul class="price-features">
+        <li>Full Package (Save the Date + Main Invite + Ceremony Cards)</li>
+        <li>Personalized Wedding Website</li>
+        <li>Priority Delivery</li>
+        <li>Unlimited Revisions</li>
+        <li>Dedicated WhatsApp Support</li>
+      </ul>
+      <a href="https://wa.me/918120079939?text=Hi!%20I%27m%20interested%20in%20the%20Premium%20Wedding%20Package.%20Can%20you%20share%20details?" target="_blank" class="btn-secondary" style="display:block;text-align:center">Get Quote on WhatsApp</a>
+      <div class="price-note">* Custom quotes for full wedding packages</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <span class="section-tag">Happy Families</span>
+    <h2 class="section-title">Words From Our <em>Loved Ones</em> 💌</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="testimonials-wrapper">
+    <div class="testimonials-track">
+      <!-- original set -->
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"The Nikah invitation was absolutely beautiful — exactly what we imagined. All our relatives asked who made it! Fairy Invites is the best."</div><div class="testimonial-author">Alshifa K.</div><div class="testimonial-event">Nikah Ceremony — Indore</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"I ordered a Haldi invitation and got it the same day! So fast and the design was stunning. Highly recommend Fairy Invites! 💛"</div><div class="testimonial-author">Nazmeen A.</div><div class="testimonial-event">Haldi Ceremony — Bhopal</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"Got the Suman & Raghav peacock invitation style — every single guest loved it. 10/10 would recommend Fairy Invites without hesitation!"</div><div class="testimonial-author">Suman R.</div><div class="testimonial-event">Hindu Wedding — Indore</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"The house warming invitation was so unique and elegant. We've never had so many compliments for an invitation before!"</div><div class="testimonial-author">Bashetty Family</div><div class="testimonial-event">House Warming Celebration</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"The 'Pyari Saheli Ki Shadi' design for my bestie was so cute she cried happy tears! Thank you Fairy Invites — you made it magical! ❤️"</div><div class="testimonial-author">Ziya</div><div class="testimonial-event">Friend's Wedding — Indore</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"Got the golden glitter luxury style for our wedding — it looked so premium! Everyone thought we hired a big agency. Bahut khoobsurat tha! 😍"</div><div class="testimonial-author">Saud & Afiya</div><div class="testimonial-event">Muslim Wedding — Indore</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"Very professional and fast. Sent our details in the morning and had the final video invitation by evening! Perfect for our engagement."</div><div class="testimonial-author">Bride Naseema</div><div class="testimonial-event">Engagement Ceremony</div></div>
+      <!-- duplicate for infinite scroll -->
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"The Nikah invitation was absolutely beautiful — exactly what we imagined. All our relatives asked who made it! Fairy Invites is the best."</div><div class="testimonial-author">Alshifa K.</div><div class="testimonial-event">Nikah Ceremony — Indore</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"I ordered a Haldi invitation and got it the same day! So fast and the design was stunning. Highly recommend Fairy Invites! 💛"</div><div class="testimonial-author">Nazmeen A.</div><div class="testimonial-event">Haldi Ceremony — Bhopal</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"Got the Suman & Raghav peacock invitation style — every single guest loved it. 10/10 would recommend Fairy Invites without hesitation!"</div><div class="testimonial-author">Suman R.</div><div class="testimonial-event">Hindu Wedding — Indore</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"The house warming invitation was so unique and elegant. We've never had so many compliments for an invitation before!"</div><div class="testimonial-author">Bashetty Family</div><div class="testimonial-event">House Warming Celebration</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"The 'Pyari Saheli Ki Shadi' design for my bestie was so cute she cried happy tears! Thank you Fairy Invites — you made it magical! ❤️"</div><div class="testimonial-author">Ziya</div><div class="testimonial-event">Friend's Wedding — Indore</div></div>
+      <div class="testimonial-card"><div class="stars">★★★★★</div><div class="testimonial-text">"Got the golden glitter luxury style for our wedding — it looked so premium! Everyone thought we hired a big agency. Bahut khoobsurat tha! 😍"</div><div class="testimonial-author">Saud & Afiya</div><div class="testimonial-event">Muslim Wedding — Indore</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="section-header reveal">
+    <span class="section-tag">Follow Us</span>
+    <h2 class="section-title">Live From <em>@fairy.invites</em></h2>
+    <p class="section-sub">See our latest work daily on Instagram — 205+ posts and counting!</p>
+    <div class="divider"></div>
+  </div>
+  <div class="insta-grid reveal">
+    <div class="insta-placeholder" onclick="window.open('https://instagram.com/fairy.invites','_blank')">📸<span class="insta-overlay-text">View on Instagram</span></div>
+    <div class="insta-placeholder" onclick="window.open('https://instagram.com/fairy.invites','_blank')">🎬<span class="insta-overlay-text">View on Instagram</span></div>
+    <div class="insta-placeholder" onclick="window.open('https://instagram.com/fairy.invites','_blank')">💍<span class="insta-overlay-text">View on Instagram</span></div>
+    <div class="insta-placeholder" onclick="window.open('https://instagram.com/fairy.invites','_blank')">✨<span class="insta-overlay-text">View on Instagram</span></div>
+    <div class="insta-placeholder" onclick="window.open('https://instagram.com/fairy.invites','_blank')">🌸<span class="insta-overlay-text">View on Instagram</span></div>
+    <div class="insta-placeholder" onclick="window.open('https://instagram.com/fairy.invites','_blank')">💛<span class="insta-overlay-text">View on Instagram</span></div>
+  </div>
+  <a href="https://instagram.com/fairy.invites" target="_blank" class="insta-cta reveal">
+    📸 Follow @fairy.invites for Daily New Designs!
+  </a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Let's Create Together</span>
+      <h2 class="section-title">Order Your <em>Magical Invitation</em> ✨</h2>
+      <p class="section-sub">Ready to create something beautiful? Reach out on WhatsApp — we respond fast!</p>
+      <div class="divider"></div>
+    </div>
+
+    <a href="https://wa.me/918120079939?text=Hi%20Fairy%20Invites!%20I%20want%20to%20order%20a%20custom%20invitation.%20Can%20you%20help%20me%3F%20%F0%9F%8C%B8" target="_blank" class="contact-wa-big reveal">
+      <span class="contact-wa-icon">💬</span>
+      Chat on WhatsApp: +91 8120079939
+    </a>
+
+    <div class="contact-info reveal">
+      <div class="contact-item">📱 <a href="https://wa.me/918120079939" target="_blank">+91 8120079939</a></div>
+      <div class="contact-item">📸 <a href="https://instagram.com/fairy.invites" target="_blank">@fairy.invites</a></div>
+      <div class="contact-item">📍 Indore, Madhya Pradesh, India</div>
+    </div>
+
+    <div class="inquiry-form reveal">
+      <h3>✨ Quick Inquiry Form</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="fname" placeholder="e.g. Priya Sharma">
+        </div>
+        <div class="form-group">
+          <label>Your WhatsApp Number</label>
+          <input type="tel" id="fphone" placeholder="+91 XXXXXXXXXX">
+        </div>
+        <div class="form-group">
+          <label>Event Type</label>
+          <select id="fevent">
+            <option value="">Select event type</option>
+            <option>Hindu Wedding</option>
+            <option>Nikah / Muslim Wedding</option>
+            <option>Haldi Ceremony</option>
+            <option>Mehndi Ceremony</option>
+            <option>Engagement Ceremony</option>
+            <option>Birthday Party</option>
+            <option>Save the Date</option>
+            <option>Personalized Wedding Website</option>
+            <option>House Warming</option>
+            <option>Anniversary</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Event Date</label>
+          <input type="date" id="fdate">
+        </div>
+        <div class="form-group full">
+          <label>Special Requirements (optional)</label>
+          <textarea id="fnote" placeholder="e.g. I love the golden glitter style, bride name is..., venue is..."></textarea>
+        </div>
+      </div>
+      <button class="form-submit" onclick="sendFormToWhatsApp()">
+        💬 Send Inquiry on WhatsApp
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">🧚 Fairy Invites</span>
+  <div class="footer-tagline">Any Types Or Invitation Video & Templates ❤️</div>
+  <div class="footer-links">
+    <a href="#portfolio">Our Work</a>
+    <a href="#services">Services</a>
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-social">
+    <a class="social-btn" href="https://instagram.com/fairy.invites" target="_blank" title="Instagram">📸</a>
+    <a class="social-btn" href="https://wa.me/918120079939" target="_blank" title="WhatsApp">💬</a>
+  </div>
+  <div class="footer-copy">© 2025 Fairy Invites | Made with ❤️ in Indore, India | WhatsApp: +91 8120079939</div>
+</footer>
+
+<script>
+// ═══ LOADER ═══
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hide');
+  }, 2000);
+});
+
+// ═══ CURSOR ═══
+const cursor = document.getElementById('cursor');
+const trailCanvas = document.getElementById('cursor-trail');
+const ctx = trailCanvas.getContext('2d');
+trailCanvas.width = window.innerWidth;
+trailCanvas.height = window.innerHeight;
+let particles = [];
+let mx = -200, my = -200;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+  for (let i = 0; i < 2; i++) {
+    particles.push({
+      x: mx, y: my,
+      vx: (Math.random() - 0.5) * 2,
+      vy: (Math.random() - 0.5) * 2,
+      life: 1,
+      size: Math.random() * 4 + 1,
+      color: `hsl(${Math.random() * 40 + 30}, 80%, 70%)`
+    });
+  }
+});
+
+function animateTrail() {
+  ctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+  particles = particles.filter(p => p.life > 0);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    p.life -= 0.04;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.life;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+  requestAnimationFrame(animateTrail);
+}
+animateTrail();
+
+window.addEventListener('resize', () => {
+  trailCanvas.width = window.innerWidth;
+  trailCanvas.height = window.innerHeight;
+});
+
+// ═══ PARTICLES (petals) ═══
+const pCanvas = document.getElementById('particles');
+const pCtx = pCanvas.getContext('2d');
+pCanvas.width = window.innerWidth;
+pCanvas.height = window.innerHeight;
+
+const petals = [];
+const petalColors = ['#C9A96E','#B76E79','#FFE4E6','#C8A2C8','#FFF0F5'];
+
+for (let i = 0; i < 40; i++) {
+  petals.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    size: Math.random() * 6 + 2,
+    speed: Math.random() * 0.8 + 0.2,
+    drift: (Math.random() - 0.5) * 0.5,
+    opacity: Math.random() * 0.5 + 0.1,
+    color: petalColors[Math.floor(Math.random() * petalColors.length)],
+    angle: Math.random() * Math.PI * 2,
+    spin: (Math.random() - 0.5) * 0.03
+  });
+}
+
+function animatePetals() {
+  pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+  petals.forEach(p => {
+    p.y += p.speed;
+    p.x += p.drift;
+    p.angle += p.spin;
+    if (p.y > pCanvas.height) { p.y = -10; p.x = Math.random() * pCanvas.width; }
+    pCtx.save();
+    pCtx.translate(p.x, p.y);
+    pCtx.rotate(p.angle);
+    pCtx.globalAlpha = p.opacity;
+    pCtx.beginPath();
+    pCtx.ellipse(0, 0, p.size, p.size * 0.5, 0, 0, Math.PI * 2);
+    pCtx.fillStyle = p.color;
+    pCtx.fill();
+    pCtx.restore();
+  });
+  requestAnimationFrame(animatePetals);
+}
+animatePetals();
+
+window.addEventListener('resize', () => {
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+});
+
+// ═══ NAVBAR ═══
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+  
+  const st = document.getElementById('scroll-top');
+  if (window.scrollY > 300) st.classList.add('visible');
+  else st.classList.remove('visible');
+});
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ═══ SCROLL REVEAL ═══
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+// ═══ STAT COUNTERS ═══
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      if (!target) return;
+      let current = 0;
+      const step = Math.ceil(target / 60);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = current + '+';
+      }, 25);
+      statObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-num[data-target]').forEach(el => statObserver.observe(el));
+
+// ═══ PORTFOLIO FILTER ═══
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+      if (filter === 'all' || card.dataset.cat === filter) {
+        card.style.display = 'block';
+        card.style.animation = 'fadeInUp .4s ease both';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// ═══ 3D TILT ON SERVICE CARDS ═══
+document.querySelectorAll('[data-tilt]').forEach(card => {
+  card.addEventListener('mousemove', function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    this.style.transform = `perspective(600px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-8px)`;
+  });
+  card.addEventListener('mouseleave', function() {
+    this.style.transform = '';
+  });
+});
+
+// ═══ FORM → WHATSAPP ═══
+function sendFormToWhatsApp() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const event = document.getElementById('fevent').value;
+  const date = document.getElementById('fdate').value;
+  const note = document.getElementById('fnote').value.trim();
+  
+  if (!name || !event) {
+    alert('Please fill in your name and select the event type!');
+    return;
+  }
+  
+  let msg = `Hi Fairy Invites! 🌸 I'm interested in ordering an invitation.
+
+👤 Name: ${name}
+📱 My WhatsApp: ${phone || 'Will share on chat'}
+🎉 Event Type: ${event}
+📅 Event Date: ${date || 'To be discussed'}
+📝 Requirements: ${note || 'Will discuss on chat'}
+
+Please help me create a beautiful invitation! 🙏`;
+
+  window.open('https://wa.me/918120079939?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ═══ TYPEWRITER on hero tagline ═══
+const taglines = [
+  'Where Every Celebration Becomes a Story ✨',
+  'Crafted with Love, Delivered on WhatsApp 💌',
+  'Hindu & Muslim Weddings — We Do It All 🕌🛕',
+  '205+ Invitations Made with Magic 🪄'
+];
+let tl = 0, tc = 0, ti = 0, deleting = false;
+const tagEl = document.querySelector('.hero-tagline');
+function typeTag() {
+  const current = taglines[ti];
+  if (!deleting) {
+    tagEl.textContent = current.substring(0, tc++);
+    if (tc > current.length) { deleting = true; setTimeout(typeTag, 2000); return; }
+  } else {
+    tagEl.textContent = current.substring(0, tc--);
+    if (tc < 0) { deleting = false; ti = (ti + 1) % taglines.length; tc = 0; }
+  }
+  setTimeout(typeTag, deleting ? 40 : 70);
+}
+setTimeout(typeTag, 2500);
+</script>
+</body>
+</html>
